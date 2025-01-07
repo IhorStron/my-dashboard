@@ -1,41 +1,64 @@
-import logo from "../assets/logo.png";
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
-const Sidebar = () => {
+const Sidebar = ({ menuOpen, setMenuOpen }) => {
   return (
-    <div className="w-[250px] h-screen bg-[#1A1A1D] text-[#BABAC1] flex flex-col px-4 py-3 shadow-lg fixed left-0 top-0">
-      
-      <div className="flex items-center justify-between mt-3">
-        
-        <div className="w-[40px] h-[40px]">
-          <img src={logo} alt="Logo" className="w-full h-full object-contain cursor-pointer" />
-        </div>
+    <>
+      {/* 🔹 Сайдбар */}
+      <div
+        className={`fixed inset-y-0 left-0 w-[250px] h-screen bg-[#1A1A1D] text-[#BABAC1] flex flex-col px-4 py-3 shadow-lg transition-transform duration-300 z-50 ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:relative`}
+      >
+        {/* 🔹 Верхня частина сайдбару */}
+        <div className="flex items-center justify-between mt-3 relative">
+          {/* Лого */}
+          <div className="w-[40px] h-[40px]">
+            <img src={logo} alt="Logo" className="w-full h-full object-contain cursor-pointer" />
+          </div>
 
-     
-        <div className="w-[40px] h-[40px] flex items-center justify-center cursor-pointer group">
-          <svg
-            width="40"
-            height="40"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-             className="group-hover:fill-[#EBEBEF] transition-colors"
-          >
-            <path
-              d="M17.3333 22H14.6666M20 13.3333C20 12.2724 19.5785 11.255 18.8284 10.5049C18.0783 9.75474 17.0608 9.33331 16 9.33331C14.9391 9.33331 13.9217 9.75474 13.1715 10.5049C12.4214 11.255 12 12.2724 12 13.3333C12 15.3934 11.4803 16.804 10.8997 17.7369C10.4101 18.5239 10.1652 18.9174 10.1742 19.0272C10.1841 19.1487 10.2099 19.195 10.3078 19.2677C10.3963 19.3333 10.795 19.3333 11.5925 19.3333H20.4074C21.2049 19.3333 21.6037 19.3333 21.6921 19.2677C21.7901 19.195 21.8158 19.1487 21.8258 19.0272C21.8347 18.9174 21.5899 18.5239 21.1002 17.7369C20.5197 16.804 20 15.3934 20 13.3333Z"
-              stroke="#7E808A"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          {/* Дзвіночок (тільки на великих екранах) */}
+          <div className="hidden lg:flex w-[40px] h-[40px] items-center justify-center cursor-pointer group">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
               className="group-hover:fill-[#EBEBEF] transition-colors"
-            />
-          </svg>
-        </div>
-      </div>
+            >
+              <path
+                d="M17.3333 22H14.6666M20 13.3333C20 12.2724 19.5785 11.255 18.8284 10.5049C18.0783 9.75474 17.0608 9.33331 16 9.33331C14.9391 9.33331 13.9217 9.75474 13.1715 10.5049C12.4214 11.255 12 12.2724 12 13.3333C12 15.3934 11.4803 16.804 10.8997 17.7369C10.4101 18.5239 10.1652 18.9174 10.1742 19.0272C10.1841 19.1487 10.2099 19.195 10.3078 19.2677C10.3963 19.3333 10.795 19.3333 11.5925 19.3333H20.4074C21.2049 19.3333 21.6037 19.3333 21.6921 19.2677C21.7901 19.195 21.8158 19.1487 21.8258 19.0272C21.8347 18.9174 21.5899 18.5239 21.1002 17.7369C20.5197 16.804 20 15.3934 20 13.3333Z"
+                stroke="#7E808A"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="group-hover:fill-[#EBEBEF] transition-colors"
+              />
+            </svg>
+          </div>
 
-     
-      <div className="flex flex-col gap-4 mt-6">
-      
+          {/* 🔹 Кнопка закриття (тільки на малих екранах) */}
+          <button
+            className="absolute top-0 right-0 p-2 rounded-md lg:hidden"
+            onClick={() => setMenuOpen(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 text-white"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M6.293 4.293a1 1 0 011.414 0L10 6.586l3.293-3.293a1 1 0 111.414 1.414L11.414 8l3.293 3.293a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586 8 5.293 4.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-4 mt-6 mb-3">
         <div className="bg-[#363639] p-3 rounded-lg border border-[#35373B]">
           <p className="text-sm text-gray-300">My proxies (0)</p>
          
@@ -43,9 +66,10 @@ const Sidebar = () => {
             Purchase proxies
           </button>
         </div>
+        </div>
+        
 
-       
-
+        {/* 🔹 Навігація */}
         <nav className="flex flex-col gap-2">
           <Link
             to="/"
@@ -139,10 +163,8 @@ const Sidebar = () => {
             Transactions
           </Link>
         </nav>
-      </div>
 
-   
-      <div className="mt-auto border-t border-gray-700 pt-3">
+        <div className="mt-auto border-t border-gray-700 pt-3">
         <Link
           to="/support"
           className="flex items-center gap-3 p-2 hover:bg-[#363639]  hover:text-[#EBEBEF] rounded transition-colors group"
@@ -178,8 +200,11 @@ const Sidebar = () => {
           </svg>
           <p className="text-gray-300">Username239845</p>
         </div>
+        </div>
+
       </div>
-    </div>
+      
+    </>
   );
 };
 

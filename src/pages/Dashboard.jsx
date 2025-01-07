@@ -3,11 +3,9 @@ import logo from "../assets/logo.png";
 const Dashboard = ({ balance }) => {
   return (
     <div className="w-full flex flex-col px-6 sm:px-12 pt-6 max-w-[1400px] mx-auto">
-     
       <h2 className="text-4xl font-bold mb-6 text-white">Overview</h2>
 
-    
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-[1100px] mx-auto">
+      <div className="grid grid-cols-2 gap-6 w-full max-w-[1100px] mx-auto">
         <div className="p-6 bg-[#1A1A1D] rounded-lg shadow flex flex-col space-y-4">
           <div className="rounded-full self-start">
             <div className="w-[50px] h-[50px]">
@@ -41,12 +39,12 @@ const Dashboard = ({ balance }) => {
         </div>
       </div>
 
-     
       <h2 className="text-2xl font-semibold mt-10 text-white">
         Latest Transactions
       </h2>
 
       <div className="mt-6 bg-[#1A1A1D] p-6 rounded-lg w-full max-w-[1100px] mx-auto">
+      <div className="overflow-x-auto">
         <table className="w-full text-left border border-[#363639]">
           <thead className="bg-[#363639] text-white">
             <tr>
@@ -55,7 +53,7 @@ const Dashboard = ({ balance }) => {
               <th className="py-2 px-4">Created On</th>
               <th className="py-2 px-4">Amount</th>
               <th className="py-2 px-4">Status</th>
-              <th className="py-2 px-4"></th> 
+              <th className="py-2 px-4"></th>
             </tr>
           </thead>
           <tbody>
@@ -108,7 +106,6 @@ const Dashboard = ({ balance }) => {
                   </span>
                 </td>
                 <td className="py-2 px-4 text-center">
-               
                   <svg
                     width="15"
                     height="16"
@@ -129,49 +126,69 @@ const Dashboard = ({ balance }) => {
             ))}
           </tbody>
         </table>
-
- 
-        <div className="flex justify-center items-center mt-6 text-[#7E808A] space-x-2">
-       
-          <button className="px-4 py-2 text-[#7E808A] transition hover:text-[#E2E469]">
-            Previous
-          </button>
-
-        
-          <div className="flex space-x-3">
-           
-            {[1, 2, 3].map((num) => (
-              <button
-                key={num}
-                className="w-10 h-10 flex items-center justify-center rounded-full text-[#7E808A] transition 
-        hover:bg-[#E2E4694D] hover:border hover:border-[#E2E469] hover:text-white"
-              >
-                {num}
-              </button>
-            ))}
-
-            
-            <span className="text-[#7E808A] flex items-center justify-center">
-              ...
-            </span>
-
-            
-            {[8, 9, 10].map((num) => (
-              <button
-                key={num}
-                className="w-10 h-10 flex items-center justify-center rounded-full text-[#7E808A] transition 
-        hover:bg-[#E2E4694D] hover:border hover:border-[#E2E469] hover:text-white"
-              >
-                {num}
-              </button>
-            ))}
-          </div>
-
-         
-          <button className="px-4 py-2 text-[#7E808A] transition hover:text-[#E2E469]">
-            Next
-          </button>
         </div>
+
+        <div className="flex justify-center items-center gap-3 mt-6 text-[#7E808A]">
+  {/* Ліва стрілка (тільки на маленьких екранах) */}
+  <button className="p-2 rounded-full bg-[#2A2A2D] hover:bg-[#363639] transition sm:hidden">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#7E808A"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M15 18l-6-6 6-6" />
+    </svg>
+  </button>
+
+  {/* Нумерація сторінок (тільки на великих екранах) */}
+  <div className="hidden sm:flex space-x-3">
+    {[1, 2, 3].map((num) => (
+      <button
+        key={num}
+        className="w-10 h-10 flex items-center justify-center rounded-full text-[#7E808A] transition 
+        hover:bg-[#E2E4694D] hover:border hover:border-[#E2E469] hover:text-white"
+      >
+        {num}
+      </button>
+    ))}
+
+    <span className="text-[#7E808A] flex items-center justify-center">...</span>
+
+    {[8, 9, 10].map((num) => (
+      <button
+        key={num}
+        className="w-10 h-10 flex items-center justify-center rounded-full text-[#7E808A] transition 
+        hover:bg-[#E2E4694D] hover:border hover:border-[#E2E469] hover:text-white"
+      >
+        {num}
+      </button>
+    ))}
+  </div>
+
+  {/* Права стрілка (тільки на маленьких екранах) */}
+  <button className="p-2 rounded-full bg-[#2A2A2D] hover:bg-[#363639] transition sm:hidden">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#E2E469"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M9 18l6-6-6-6" />
+    </svg>
+  </button>
+</div>
+
       </div>
     </div>
   );
