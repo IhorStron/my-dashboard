@@ -87,7 +87,7 @@ const Dashboard = ({ balance }) => {
                   status: "Cancelled",
                 },
               ].map((tx, index) => (
-                <tr key={index} className="border-b border-[#363639]">
+                <tr key={index} className="border-b border-[#363639] hover:bg-[#363639] transition">
                   <td className="py-2 px-4">{tx.name}</td>
                   <td className="py-2 px-4">{tx.method}</td>
                   <td className="py-2 px-4">{tx.date}</td>
@@ -156,7 +156,7 @@ const Dashboard = ({ balance }) => {
               </button>
             ))}
 
-            <span className="text-[#7E808A] flex items-center justify-center">
+            <span className="text-[#7E808A] flex items-center justify-center cursor-pointer">
               ...
             </span>
 
